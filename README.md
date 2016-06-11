@@ -1,0 +1,2 @@
+# simplednsmasqserver
+Simple dnsmasq server.
