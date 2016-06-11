@@ -11,7 +11,7 @@ The basic format is:
 ```
 docker run -d \
 --name dns \
---cap-add: NET_ADMIN \
+--cap-add NET_ADMIN \
 --net=host \
 neiltheblue/simplednsmasqserver \
 <options>
@@ -30,7 +30,7 @@ The options may also include entries with the prefix `CONF+<value>` or `CONF-<va
 ```
 docker run -d \
 --name dns \
---cap-add: NET_ADMIN \
+--cap-add NET_ADMIN \
 --net=host \
 neiltheblue/simplednsmasqserver \
 CONF+enable-tftp
