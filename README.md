@@ -33,25 +33,24 @@ docker run -d \
 --cap-add NET_ADMIN \
 --net=host \
 neiltheblue/simplednsmasqserver \
-CONF+enable-tftp
+CONF+dnssec
 <options>
 ```
 
 ## PXE boot
 
-It is easy to add PXE boot support to the image by adding the following options:
+PXE boot is already configured for dnsmasq with support for lpxelinux, which allows for images to be booted from http.
+To add entries to the `pxelinux.cfg/default` file just provide options with the `PXE+` prefix.
+For example, with the ubuntu netboot kernel and initrd image hosted on your local server:
 
 ```
 docker run -d \
 --name dns \
 --cap-add NET_ADMIN \
 --net=host \
--v /pxeboot-dir:/tftp/pxeboot
 neiltheblue/simplednsmasqserver \
-CONF+enable-tftp
-CONF+tftp-root=/tftp/pxeboot
-CONF+dhcp-boot=pxelinux.0
+'PXE+LABEL Ubuntu xenial amd64_install' \
+'PXE+kernel http://<your_server>/ubuntu/xenial/amd64/linux' \
+'PXE+append vga=normal initrd=http://<your_server>/ubuntu/xenial/amd64/initrd.gz  --' 
 
 ```
-
-Where `/pxeboot-dir` is the local directory with the pxe boot files.
