@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-RUN apk --no-cache add dnsmasq syslinux
+RUN apk --no-cache add dnsmasq syslinux awake
 RUN mkdir /pxeboot && \
 cp /usr/share/syslinux/ldlinux.c32 /pxeboot && \
 cp /usr/share/syslinux/libcom32.c32 /pxeboot && \
